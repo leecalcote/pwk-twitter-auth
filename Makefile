@@ -1,0 +1,35 @@
+IMAGE := "layer5/pwk-twitter-auth"
+
+run:
+	HOST="localhost" \
+	PORT="8080" \
+	PROTO="http://" \
+	TWITTER_CONSUMER_KEY=$(TWITTER_CONSUMER_KEY)  \
+	TWITTER_CONSUMER_SECRET=$(TWITTER_CONSUMER_SECRET) \
+	EVENT=$(EVENT) \
+	AWS_REGION=$(AWS_REGION) \
+	DYNAMO_USER_TABLE=$(DYNAMO_USER_TABLE) \
+	AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) \
+	AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) \
+	go run main.go
+
+docker:
+	docker build -t $(IMAGE) .
+
+docker-run:
+	docker run -d -p 8080:8080 \
+	-e HOST="localhost" \
+	-e PORT="8080" \
+	-e PROTO="http://" \
+	-e TWITTER_CONSUMER_KEY=$(TWITTER_CONSUMER_KEY)  \
+	-e TWITTER_CONSUMER_SECRET=$(TWITTER_CONSUMER_SECRET) \
+	-e EVENT=$(EVENT) \
+	-e AWS_REGION=$(AWS_REGION) \
+	-e DYNAMO_USER_TABLE=$(DYNAMO_USER_TABLE) \
+	-e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) \
+	-e AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) \
+	$(IMAGE)
+
+
+docker-push: docker
+	docker push $(IMAGE)
