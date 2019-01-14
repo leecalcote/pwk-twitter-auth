@@ -1,5 +1,5 @@
 # pwk-twitter-auth
-This is a twitter authenticator app which has been solely used in Istio workshops. It is written in Go. The app authenticates users with twitter, posts a tweet on their behalf and also persists minimal info in AWS DynamoDB.
+This is a twitter authenticator app which has been solely used in our [Istio workshops](https://github.com/leecalcote/istio-service-mesh-workshop). It is written in Go. The app authenticates users with twitter, posts a tweet on their behalf and also persists minimal info in AWS DynamoDB.
 
 __Please note:__ This app is __NOT__ meant for use in production.
 
