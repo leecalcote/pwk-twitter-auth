@@ -86,7 +86,7 @@ func New(config *Config) *http.ServeMux {
 			Path:    "/",
 		}
 		http.SetCookie(w, ck)
-		logrus.Infof("set cookie with value: %s", r.Referer())
+		logrus.Infof("set cookie with value: %s", tu.String())
 		// }
 		// }
 		twitter.LoginHandler(oauth1Config, nil).ServeHTTP(w, r)
